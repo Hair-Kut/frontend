@@ -1,0 +1,7 @@
+{
+  "preset": "ts-jest",
+  "testEnvironment": "jsdom",
+  "transformIgnorePatterns": ["/node_modules/", "\\.pnp\\.[^\\/]+$"],
+  "setupFilesAfterEnv": ["./src/setupTests.ts"],
+  "moduleNameMapper": { "^src/(.*)$": "<rootDir>/src/$1" }
+}
