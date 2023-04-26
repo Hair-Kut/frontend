@@ -32,12 +32,13 @@ module.exports = {
         exclude: path.join(__dirname, 'node_modules'),
       },
       {
-        test: /\.(png|jpe?g|gif)$/,
-        use: [
-          {
-            loader: 'file-loader',
+        test: /\.(png|jpe?g|gif|ico)$/,
+        use: {
+          loader: 'file-loader',
+          options: {
+            name: '[name].[contenthash].[ext]',
           },
-        ],
+        },
       },
     ],
   },
@@ -46,7 +47,11 @@ module.exports = {
     filename: 'dist/[name].js',
   },
   plugins: [
-    new HtmlWebpackPlugin({ template: './public/index.html' }),
+    new HtmlWebpackPlugin({
+      template: './public/index.html',
+      favicon: './public/favicon.ico',
+      filename: 'index.html',
+    }),
     new CleanWebpackPlugin(),
     new webpack.EnvironmentPlugin({ NODE_ENV: isDevelopment ? 'development' : 'production' }),
   ],

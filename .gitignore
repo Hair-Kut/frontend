@@ -230,3 +230,6 @@ storybook-static/
 # .pnp.*
 
 # End of https://www.toptal.com/developers/gitignore/api/react,macos,storybookjs,visualstudiocode,yarn,node
+
+# react
+build
