@@ -1,0 +1,7 @@
+.frame-wrapper {
+  border: 2px solid #999;
+  border-radius: 5px;
+
+  width: fit-content;
+  height: fit-content;
+}
