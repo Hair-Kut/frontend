@@ -1,0 +1,14 @@
+.logo-wrapper {
+  display: flex;
+  align-items: center;
+
+  margin-bottom: 40px;
+}
+
+.logo {
+  width: 400px;
+}
+
+.ku {
+  height: 80px;
+}
