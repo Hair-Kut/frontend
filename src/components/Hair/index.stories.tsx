@@ -12,3 +12,9 @@ export const Default = Template.bind({});
 Default.args = {
   hair: 'hair1',
 };
+
+export const Selected = Template.bind({});
+Selected.args = {
+  hair: 'hair1',
+  selected: true,
+};
