@@ -1,0 +1,17 @@
+.button {
+  border: none;
+
+  padding: 16px 32px;
+
+  background: #4ec0e9;
+  color: #fff;
+
+  border-radius: 24px;
+
+  cursor: pointer;
+}
+
+.button-disabled {
+  background: #cdd2db;
+  cursor: default;
+}
