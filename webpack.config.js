@@ -40,11 +40,21 @@ module.exports = {
           },
         },
       },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
+      },
     ],
   },
   output: {
     path: path.join(__dirname, 'build'),
     filename: 'dist/[name].js',
+  },
+  resolve: {
+    alias: {
+      src: path.resolve(__dirname, 'src'),
+    },
+    extensions: ['.js', '.ts', '.tsx'],
   },
   plugins: [
     new HtmlWebpackPlugin({
