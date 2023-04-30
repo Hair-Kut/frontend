@@ -32,11 +32,11 @@ module.exports = {
         exclude: path.join(__dirname, 'node_modules'),
       },
       {
-        test: /\.(png|jpe?g|gif|ico)$/,
+        test: /\.(png|jpe?g|gif|ico|svg)$/i,
         use: {
           loader: 'file-loader',
           options: {
-            name: '[name].[contenthash].[ext]',
+            name: 'img/[name].[ext]',
           },
         },
       },

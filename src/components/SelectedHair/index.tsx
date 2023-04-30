@@ -18,7 +18,7 @@ function SelectedHair() {
         ) : (
           <img
             className={styles['not-selected-hair-image']}
-            src='img/Selected-Hair.svg'
+            src='img/selected-hair.svg'
             alt='헤어스타일 선택 이미지'
           />
         )}
