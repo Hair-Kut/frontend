@@ -60,6 +60,22 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './public/index.html',
       favicon: './public/favicon.ico',
+      meta: {
+        'og:title': { name: 'title', property: 'og:title', content: 'Hair-Kut' },
+        'og:description': {
+          name: 'description',
+          property: 'og:description',
+          content: '가상 헤어스타일링 제공 플랫폼',
+        },
+        'og:type': { property: 'og:type', content: 'website' },
+        'og:image': {
+          name: 'image',
+          property: 'og:image',
+          content: 'https://home-hair-kut.vercel.app/img/logo.png',
+        },
+        'og:image:width': { property: 'og:image:width', content: '300' },
+        'og:image:height': { property: 'og:image:height', content: '300' },
+      },
       filename: 'index.html',
     }),
     new CleanWebpackPlugin(),
