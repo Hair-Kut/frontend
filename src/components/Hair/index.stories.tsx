@@ -13,8 +13,8 @@ Default.args = {
   hair: 'hair1',
 };
 
-export const Selected = Template.bind({});
-Selected.args = {
+export const Expanded = Template.bind({});
+Expanded.args = {
   hair: 'hair1',
-  selected: true,
+  expanded: true,
 };

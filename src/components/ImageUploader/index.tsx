@@ -1,49 +1,59 @@
-import imageUpload from 'src/hooks/imageUpload';
+import { useContext, useEffect } from 'react';
+
 import Frame from 'src/components/Frame';
+import Convex from 'src/components/Convex';
+
+import imageUpload from 'src/hooks/imageUpload';
+
+import { UserImageSrcContext } from 'src/contexts/image';
 
 import styles from './style.module.css';
 
 function ImageUploader() {
+  const { setUserImageSrc } = useContext(UserImageSrcContext);
   const [imageSrc, handleUpload] = imageUpload();
+
+  useEffect(() => {
+    setUserImageSrc(imageSrc);
+  }, [imageSrc]);
 
   return (
     <Frame>
-      <div className={styles['image-uploader-wrapper']}>
-        <input
-          className={styles['image-uploader-input']}
-          type='file'
-          accept='image/*'
-          onChange={handleUpload}
-          name='image'
-          id='image'
-          aria-label='image'
-        />
-        <label htmlFor='image'>
-          <div className={styles['convex-wrapper']}>
+      <Convex>
+        <div className={styles['image-uploader-wrapper']}>
+          <input
+            className={styles['image-uploader-input']}
+            type='file'
+            accept='image/*'
+            onChange={handleUpload}
+            name='image'
+            id='image'
+            aria-label='image'
+          />
+          <label htmlFor='image'>
             {!!imageSrc ? (
-              <>
-                <img
-                  className={styles['image-uploader-image']}
-                  src={imageSrc}
-                  alt='업로드된 이미지'
-                />
-                <p className={styles['image-uploader-help']}>
-                  이미지 클릭 시 파일을 다시 업로드할 수 있습니다.
-                </p>
-              </>
+              <img
+                className={styles['image-uploader-image']}
+                src={imageSrc}
+                alt='업로드된 이미지'
+              />
             ) : (
-              <>
-                <img
-                  className={styles['image-uploader-image']}
-                  src='img/image.png'
-                  alt='이미지 업로더'
-                />
-                <p className={styles['image-uploader-help']}>파일을 업로드하세요.</p>
-              </>
+              <img
+                className={styles['image-uploader-image']}
+                src='img/image.png'
+                alt='이미지 업로더'
+              />
             )}
-          </div>
-        </label>
-      </div>
+          </label>
+          {!!imageSrc ? (
+            <p className={styles['image-uploader-help']}>
+              이미지 클릭 시 파일을 다시 업로드할 수 있습니다.
+            </p>
+          ) : (
+            <p className={styles['image-uploader-help']}>파일을 업로드하세요.</p>
+          )}
+        </div>
+      </Convex>
     </Frame>
   );
 }

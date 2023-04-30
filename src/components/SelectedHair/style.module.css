@@ -7,8 +7,6 @@
 
   width: 350px;
   height: 350px;
-
-  color: #999;
 }
 
 .not-selected-hair-image {
@@ -17,19 +15,12 @@
 }
 
 .not-selected-hair-help {
-  transform: translateY(125px);
+  position: absolute;
+  bottom: 5px;
 
-  animation: float 3s ease-in-out infinite;
-}
+  margin: 0;
 
-@keyframes float {
-  0% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
+  color: #999;
+
+  font-size: 12px;
 }

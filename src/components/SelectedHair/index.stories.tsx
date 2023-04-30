@@ -1,21 +1,29 @@
 import { StoryFn } from '@storybook/react';
-import SelectedHair, { Props as SelectedHairProps } from '.';
+
+import SelectedHair from '.';
+import ContextWrapper from './ContextWrapper';
 
 export default {
   component: SelectedHair,
   title: 'SelectedHair',
 };
 
-const Template: StoryFn<SelectedHairProps> = (args: SelectedHairProps) => (
-  <SelectedHair {...args} />
-);
+const Template: StoryFn = () => <SelectedHair />;
 
 export const Default = Template.bind({});
-Default.args = {
-  hairImageSrc: '',
-};
+Default.decorators = [
+  (Story: StoryFn) => (
+    <ContextWrapper initialState=''>
+      <Story />
+    </ContextWrapper>
+  ),
+];
 
 export const Image = Template.bind({});
-Image.args = {
-  hairImageSrc: 'hair1',
-};
+Image.decorators = [
+  (Story: StoryFn) => (
+    <ContextWrapper initialState='hair1'>
+      <Story />
+    </ContextWrapper>
+  ),
+];

@@ -1,30 +1,38 @@
 import Frame from 'src/components/Frame';
+import Convex from 'src/components/Convex';
+
 import style from './style.module.css';
 
 interface Props {
   hair: string;
-  selected?: boolean;
+  expanded?: boolean;
+  onClickHair?: () => void;
 }
 
-function Hair({ hair, selected }: Props) {
+function Hair({ hair, expanded = false, onClickHair = () => {} }: Props) {
   return (
-    <Frame>
-      {selected ? (
-        <div className={`${style['hair-wrapper']} ${style['selected']}`}>
+    <>
+      {expanded ? (
+        <div className={`${style['hair-wrapper']} ${style['expanded']}`}>
           <img className={style['hair-img']} src={`img/${hair}.svg`} alt={`${hair}이미지`} />
         </div>
       ) : (
-        <div className={`${style['hair-wrapper']} ${style['in-list']}`}>
-          <img className={style['hair-img']} src={`img/${hair}.svg`} alt={`${hair}이미지`} />
-        </div>
+        <Frame>
+          <Convex>
+            <div className={`${style['hair-wrapper']} ${style['in-list']}`} onClick={onClickHair}>
+              <img
+                className={style['hair-img']}
+                src={`img/${hair}.svg`}
+                alt={`${hair}이미지`}
+                aria-label={hair}
+              />
+            </div>
+          </Convex>
+        </Frame>
       )}
-    </Frame>
+    </>
   );
 }
-
-Hair.propTypes = {
-  selected: false,
-};
 
 export default Hair;
 export type { Props };
