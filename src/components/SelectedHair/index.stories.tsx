@@ -1,7 +1,7 @@
 import { StoryFn } from '@storybook/react';
 
 import SelectedHair from '.';
-import ContextWrapper from './ContextWrapper';
+import ContextWrapper from 'src/contexts/imageSrc/wrapper';
 
 export default {
   component: SelectedHair,

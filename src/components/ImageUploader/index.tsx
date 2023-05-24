@@ -5,12 +5,12 @@ import Convex from 'src/components/Convex';
 
 import imageUpload from 'src/hooks/imageUpload';
 
-import { UserImageSrcContext } from 'src/contexts/image';
+import { ImageSrcContext } from 'src/contexts/imageSrc';
 
 import styles from './style.module.css';
 
 function ImageUploader() {
-  const { setUserImageSrc } = useContext(UserImageSrcContext);
+  const { setUserImageSrc } = useContext(ImageSrcContext);
   const [imageSrc, handleUpload] = imageUpload();
 
   useEffect(() => {

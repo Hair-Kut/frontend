@@ -2,12 +2,12 @@ import { useContext } from 'react';
 
 import Hair from 'src/components/Hair';
 
-import { HairImageSrcContext } from 'src/contexts/image';
+import { ImageSrcContext } from 'src/contexts/imageSrc';
 
 import styles from './style.module.css';
 
 function HairList() {
-  const { setHairImageSrc } = useContext(HairImageSrcContext);
+  const { setHairImageSrc } = useContext(ImageSrcContext);
   const hairList: string[] = Array(11)
     .fill('hair')
     .map((value, index) => value + (index + 1).toString());

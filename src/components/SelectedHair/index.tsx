@@ -3,18 +3,18 @@ import { useContext } from 'react';
 import Hair from 'src/components/Hair';
 import Frame from 'src/components/Frame';
 
-import { HairImageSrcContext } from 'src/contexts/image';
+import { ImageSrcContext } from 'src/contexts/imageSrc';
 
 import styles from './style.module.css';
 
 function SelectedHair() {
-  const { hairImageSrc } = useContext(HairImageSrcContext);
+  const { hairImageSrc } = useContext(ImageSrcContext);
 
   return (
     <Frame>
       <div className={styles['not-selected-hair-wrapper']}>
         {!!hairImageSrc ? (
-          <Hair hair={hairImageSrc} expanded />
+          <Hair hair={hairImageSrc} />
         ) : (
           <img
             className={styles['not-selected-hair-image']}

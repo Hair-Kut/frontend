@@ -2,22 +2,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  width: 100px;
+  height: 100px;
+
+  transition: all 0.3s ease-out;
 }
 .hair-img {
   width: 80%;
   height: 80%;
 }
 
-.expanded {
-  width: 350px;
-  height: 350px;
-}
-
-.in-list {
-  width: 100px;
-  height: 100px;
-
+.can-click {
   cursor: pointer;
-
-  transition: all 0.3s ease-out;
 }
