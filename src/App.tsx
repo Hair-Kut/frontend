@@ -1,6 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import HomePage from 'src/pages/Home';
-import ResultPage from 'src/pages/Result';
 
 import '../public/img/hair-kut.svg';
 import '../public/img/hair1.svg';
@@ -20,14 +18,7 @@ import '../public/img/result.png';
 import '../public/img/selected-hair.svg';
 
 function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<HomePage />} />
-        <Route path='/result' element={<ResultPage />} />
-      </Routes>
-    </BrowserRouter>
-  );
+  return <HomePage />;
 }
 
 export default App;
