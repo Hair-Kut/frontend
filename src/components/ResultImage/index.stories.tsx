@@ -18,12 +18,5 @@ const Template: StoryFn<ResultImageProps> = (args: ResultImageProps) => <ResultI
 
 export const Default = Template.bind({});
 Default.args = {
-  imageSrc: '',
-  isLoaded: false,
-};
-
-export const AfterLoaded = Template.bind({});
-AfterLoaded.args = {
-  imageSrc: 'img/hair1.svg',
-  isLoaded: true,
+  imageSrc: 'img/result.png',
 };

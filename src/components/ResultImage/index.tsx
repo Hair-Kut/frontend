@@ -1,24 +1,18 @@
+import Frame from 'src/components/Frame';
+
 import styles from './style.module.css';
 
 interface Props {
-  isLoaded: boolean;
   imageSrc: string;
 }
 
-function ResultImage({ isLoaded, imageSrc }: Props) {
+function ResultImage({ imageSrc }: Props) {
   return (
-    <div className={styles['result-image-wrapper']}>
-      {isLoaded ? (
-        <img className={styles['result-image']} src={imageSrc} />
-      ) : (
-        <div className={styles.loading}>
-          <div />
-          <div />
-          <div />
-          <div />
-        </div>
-      )}
-    </div>
+    <Frame>
+      <div className={styles['result-image-wrapper']}>
+        <img className={styles['result-image']} src={!!imageSrc ? imageSrc : 'img/result.png'} />
+      </div>
+    </Frame>
   );
 }
 
