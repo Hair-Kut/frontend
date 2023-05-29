@@ -2,8 +2,10 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const path = require('path');
+const Dotenv = require('dotenv-webpack');
 
 const isDevelopment = process.env.NODE_ENV === 'development';
+const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 module.exports = {
   entry: './src/index.tsx',
   mode: isDevelopment ? 'development' : 'production',
@@ -79,7 +81,10 @@ module.exports = {
       filename: 'index.html',
     }),
     new CleanWebpackPlugin(),
-    new webpack.EnvironmentPlugin({ NODE_ENV: isDevelopment ? 'development' : 'production' }),
+    new webpack.EnvironmentPlugin({
+      NODE_ENV: isDevelopment ? 'development' : 'production',
+    }),
+    new Dotenv(),
   ],
   devServer: {
     hot: true,
