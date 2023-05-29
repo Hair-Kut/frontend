@@ -5,7 +5,7 @@ const path = require('path');
 const Dotenv = require('dotenv-webpack');
 
 const isDevelopment = process.env.NODE_ENV === 'development';
-const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
+
 module.exports = {
   entry: './src/index.tsx',
   mode: isDevelopment ? 'development' : 'production',
