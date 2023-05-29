@@ -8,7 +8,7 @@ import styles from './style.module.css';
 
 function HairList() {
   const { selectedHair } = useContext(ImageSrcContext);
-  const hairList: string[] = Array(11)
+  const hairList: string[] = Array(5)
     .fill('hair')
     .map((value, index) => value + (index + 1).toString());
 

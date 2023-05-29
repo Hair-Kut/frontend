@@ -34,7 +34,7 @@ function Hair({ index, hair, selected = false }: Props) {
           onClick={handleClickHair}>
           <img
             className={style['hair-img']}
-            src={`img/${hair}.svg`}
+            src={`img/${hair}.png`}
             alt={`${hair}이미지`}
             aria-label={hair}
           />

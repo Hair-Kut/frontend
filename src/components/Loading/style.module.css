@@ -1,5 +1,6 @@
 .loading-wrapper {
-  position: absolute;
+  z-index: 2;
+  position: fixed;
   display: flex;
   flex-direction: column;
   justify-content: center;
