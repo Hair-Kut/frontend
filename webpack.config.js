@@ -84,7 +84,7 @@ module.exports = {
     new webpack.EnvironmentPlugin({
       NODE_ENV: isDevelopment ? 'development' : 'production',
     }),
-    new Dotenv(),
+    new Dotenv({ systemvars: true }),
   ],
   devServer: {
     hot: true,
