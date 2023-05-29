@@ -8,20 +8,30 @@ import { ImageSrcContext } from 'src/contexts/imageSrc';
 import style from './style.module.css';
 
 interface Props {
+  index: number;
   hair: string;
-  onClickHair?: () => void;
+  selected?: boolean;
 }
 
-function Hair({ hair, onClickHair = () => {} }: Props) {
-  const { userImageSrc } = useContext(ImageSrcContext);
+function Hair({ index, hair, selected = false }: Props) {
+  const { userImageSrc, setSelectedHair } = useContext(ImageSrcContext);
   const condition = !!userImageSrc;
+
+  const handleClickHair = () => {
+    if (!condition) {
+      return;
+    }
+    setSelectedHair(index);
+  };
 
   return (
     <Frame>
-      <Convex condition={condition}>
+      <Convex condition={condition && !selected}>
         <div
-          className={`${style['hair-wrapper']} ${condition && style['can-click']}`}
-          onClick={onClickHair}>
+          className={`${style['hair-wrapper']} ${condition && style['can-click']} ${
+            selected && style['hair-selected']
+          }`}
+          onClick={handleClickHair}>
           <img
             className={style['hair-img']}
             src={`img/${hair}.svg`}

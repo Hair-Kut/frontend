@@ -1,21 +1,17 @@
-import { useContext, useEffect } from 'react';
+import { ChangeEvent, useContext } from 'react';
 
 import Frame from 'src/components/Frame';
 import Convex from 'src/components/Convex';
-
-import imageUpload from 'src/hooks/imageUpload';
 
 import { ImageSrcContext } from 'src/contexts/imageSrc';
 
 import styles from './style.module.css';
 
-function ImageUploader() {
-  const { setUserImageSrc } = useContext(ImageSrcContext);
-  const [imageSrc, handleUpload] = imageUpload();
-
-  useEffect(() => {
-    setUserImageSrc(imageSrc);
-  }, [imageSrc]);
+interface Props {
+  onUpload: (e: ChangeEvent<HTMLInputElement>) => void;
+}
+function ImageUploader({ onUpload }: Props) {
+  const { userImageSrc: imageSrc, isImageUploaded } = useContext(ImageSrcContext);
 
   return (
     <Frame>
@@ -25,13 +21,13 @@ function ImageUploader() {
             className={styles['image-uploader-input']}
             type='file'
             accept='image/*'
-            onChange={handleUpload}
+            onChange={onUpload}
             name='image'
             id='image'
             aria-label='image'
           />
           <label htmlFor='image'>
-            {!!imageSrc ? (
+            {isImageUploaded ? (
               <img
                 className={styles['image-uploader-image']}
                 src={imageSrc}
@@ -45,7 +41,7 @@ function ImageUploader() {
               />
             )}
           </label>
-          {!!imageSrc ? (
+          {isImageUploaded ? (
             <p className={styles['image-uploader-help']}>
               이미지 클릭 시 파일을 다시 업로드할 수 있습니다.
             </p>

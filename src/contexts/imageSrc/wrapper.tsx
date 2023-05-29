@@ -7,18 +7,18 @@ interface Props extends PropsWithChildren {
 }
 
 function ContextWrapper({ children, initialState }: Props) {
-  const [userImageSrc, setUserImageSrc] = useState('');
-  const [hairImageSrc, setHairImageSrc] = useState('');
   const [resultImageSrc, setResultImageSrc] = useState('');
+  const [selectedHair, setSelectedHair] = useState(-1);
+
   return (
     <ImageSrcContext.Provider
       value={{
-        userImageSrc,
-        setUserImageSrc,
-        hairImageSrc,
-        setHairImageSrc,
+        userImageSrc: '',
         resultImageSrc,
         setResultImageSrc,
+        selectedHair,
+        setSelectedHair,
+        isImageUploaded: false,
       }}>
       {children}
     </ImageSrcContext.Provider>
