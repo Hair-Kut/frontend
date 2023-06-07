@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import axios from 'axios';
+import { useEffect, useState } from 'react';
 
 import ImageUploader from 'src/components/ImageUploader';
 import HairList from 'src/components/HairList';
@@ -10,33 +9,39 @@ import Loading from 'src/components/Loading';
 
 import { ImageSrcContext } from 'src/contexts/imageSrc';
 
-import usePresignedURL from 'src/hooks/usePresignedUrl';
 import useImageUpload from 'src/hooks/useImageUpload';
 import useInferenceCheck from 'src/hooks/useInferenceCheck';
 
-import { SERVER_URL } from 'src/constants';
+import { getResultImagePath, postStartInference } from 'src/api';
 
 import styles from './style.module.css';
 
 function HomePage() {
-  const [resultImageSrc, setResultImageSrc] = useState('');
   const [selectedHair, setSelectedHair] = useState(-1);
   const [start, setStart] = useState(false);
-  const { id, presignedUrl } = usePresignedURL();
-  const { imageSrc: userImageSrc, isImageUploaded, handleUpload } = useImageUpload(presignedUrl);
+  const [resultImagePathList, setResultImagePathList] = useState<string[]>([]);
+  const { id, imageSrc: userImageSrc, isImageUploaded, handleUpload } = useImageUpload();
   const isInferenceFinished = useInferenceCheck(start, id);
 
   const handleClick = async () => {
-    await axios.post(SERVER_URL + `/api/memberImages/upload_complete?id=${id}`);
+    await postStartInference(id);
     setStart(true);
   };
+
+  const getResultImage = async () => {
+    setResultImagePathList(await getResultImagePath(id));
+  };
+  useEffect(() => {
+    if (isInferenceFinished) {
+      getResultImage();
+    }
+  }, [isInferenceFinished]);
 
   return (
     <ImageSrcContext.Provider
       value={{
         userImageSrc,
-        resultImageSrc,
-        setResultImageSrc,
+        resultImagePathList,
         isImageUploaded,
         selectedHair,
         setSelectedHair,
@@ -49,7 +54,7 @@ function HomePage() {
           <Button condition={isImageUploaded} onClick={handleClick}>
             전송하기
           </Button>
-          <ResultImage imageSrc='' />
+          <ResultImage />
         </div>
         <HairList />
       </div>
