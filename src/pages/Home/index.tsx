@@ -23,11 +23,7 @@ function HomePage() {
   const [selectedHair, setSelectedHair] = useState(-1);
   const [start, setStart] = useState(false);
   const { id, presignedUrl } = usePresignedURL();
-  const {
-    imageSrc: userImageSrc,
-    isImageUploaded,
-    handleUpload,
-  } = useImageUpload(id, presignedUrl);
+  const { imageSrc: userImageSrc, isImageUploaded, handleUpload } = useImageUpload(presignedUrl);
   const isInferenceFinished = useInferenceCheck(start, id);
 
   const handleClick = async () => {

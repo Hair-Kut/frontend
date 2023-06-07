@@ -1,12 +1,7 @@
 import { ChangeEvent, useState } from 'react';
 import axios from 'axios';
 
-import { SERVER_URL } from 'src/constants';
-
-function useImageUpload(
-  id: number,
-  presignedUrl: string,
-): {
+function useImageUpload(presignedUrl: string): {
   imageSrc: string;
   isImageUploaded: boolean;
   handleUpload: (e: ChangeEvent<HTMLInputElement>) => void;
