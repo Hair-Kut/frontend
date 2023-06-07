@@ -1,8 +1,7 @@
 import { Dispatch, SetStateAction, createContext } from 'react';
 
 interface ImageSrcType {
-  resultImageSrc: string;
-  setResultImageSrc: Dispatch<SetStateAction<string>>;
+  resultImagePathList: string[];
   selectedHair: number;
   setSelectedHair: Dispatch<SetStateAction<number>>;
   userImageSrc: string;
@@ -11,8 +10,7 @@ interface ImageSrcType {
 
 export const ImageSrcContext = createContext<ImageSrcType>({
   userImageSrc: '',
-  resultImageSrc: '',
-  setResultImageSrc: () => {},
+  resultImagePathList: [],
   isImageUploaded: false,
   selectedHair: -1,
   setSelectedHair: () => {},
