@@ -1,11 +1,15 @@
 import { ChangeEvent, useState } from 'react';
-import axios from 'axios';
 
-function useImageUpload(presignedUrl: string): {
+import { postPresignedUrl, putImageToS3 } from 'src/api';
+
+function useImageUpload(): {
+  id: number;
   imageSrc: string;
   isImageUploaded: boolean;
   handleUpload: (e: ChangeEvent<HTMLInputElement>) => void;
 } {
+  const [presignedUrl, setPresignedUrl] = useState('');
+  const [id, setID] = useState(0);
   const [imageSrc, setImageSrc] = useState('');
   const [isImageUploaded, setIsImageUploaded] = useState(false);
 
@@ -21,12 +25,15 @@ function useImageUpload(presignedUrl: string): {
 
       const blob = file.slice(0, file.size, 'image/png');
       const newFile = new File([blob], 'image.jpg', { type: 'image/jpg' });
-      const { status } = await axios.put(presignedUrl, newFile);
+      const { id: newID, presignedUrl: newPresignedUrl } = await postPresignedUrl();
+      const status = await putImageToS3(newPresignedUrl, newFile);
+      setPresignedUrl(newPresignedUrl);
+      setID(newID);
       setIsImageUploaded(status === 200);
     }
   };
 
-  return { imageSrc, isImageUploaded, handleUpload };
+  return { id, imageSrc, isImageUploaded, handleUpload };
 }
 
 export default useImageUpload;
