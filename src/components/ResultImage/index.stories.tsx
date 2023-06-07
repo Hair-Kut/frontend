@@ -1,6 +1,6 @@
 import { StoryFn } from '@storybook/react';
 
-import ResultImage, { Props as ResultImageProps } from '.';
+import ResultImage from '.';
 
 export default {
   component: ResultImage,
@@ -14,9 +14,6 @@ export default {
   ],
 };
 
-const Template: StoryFn<ResultImageProps> = (args: ResultImageProps) => <ResultImage {...args} />;
+const Template: StoryFn = () => <ResultImage />;
 
 export const Default = Template.bind({});
-Default.args = {
-  imageSrc: 'img/result.png',
-};
